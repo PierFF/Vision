@@ -1,17 +1,18 @@
 import sys
-from PyQt5.QtWidgets import QMainWindow, QFileDialog, QApplication,\
-     QGraphicsPixmapItem, QGraphicsScene
-from PyQt5.QtGui import QIcon, QPixmap
+from PyQt5.QtWidgets import QMainWindow, QFileDialog, QApplication
+from PyQt5.QtGui import QIcon
 from testbench_UI import Ui_TestBench
+from image_tab import ImageTab
+
 import json
 import os
 
 
-class MyWindow(QMainWindow, Ui_TestBench):
+class MainWindow(QMainWindow, Ui_TestBench):
     version = 0.1
     file_prefs_name = "TestBench.prefs"
     current_dir = ""
-    scene=None
+    tabs = {}
 
     def __init__(self):
         QMainWindow.__init__(self)
@@ -20,6 +21,7 @@ class MyWindow(QMainWindow, Ui_TestBench):
         self.statusbar.showMessage(
             "TestBench v{} - INSA Toulouse".format(self.version)
             )
+        self.tabsWidget.removeTab(0)
 
         # Set close action
         self.action_Quit.triggered.connect(self.close)
@@ -33,6 +35,13 @@ class MyWindow(QMainWindow, Ui_TestBench):
         self.action_Save.triggered.connect(self.open)
         self.action_Save.setIcon(QIcon("./img/save.png"))
 
+        # Specify cose action for tabsWidget
+
+        self.tabsWidget.tabCloseRequested.connect(self.removeTab)
+
+    def removeTab(self, tab_index):
+        self.tabsWidget.removeTab(tab_index)
+
     def message(self, text):
         self.messagesWidget.appendPlainText(text)
 
@@ -40,6 +49,7 @@ class MyWindow(QMainWindow, Ui_TestBench):
         if os.path.exists(self.file_prefs_name):
             f = open(self.file_prefs_name, 'r')
             prefs = json.load(f)
+            f.close()
             return prefs
         else:
             return None
@@ -47,10 +57,11 @@ class MyWindow(QMainWindow, Ui_TestBench):
     def save_preferences(self, prefs):
         f = open(self.file_prefs_name, 'w')
         json.dump(prefs, f)
+        f.close()
 
     def open(self):
         fd = QFileDialog(self)
-        fd.setNameFilter("Images (*.png *.xpm *.jpg)")
+        fd.setNameFilter("Tiff Images (*.tiff *.tif *.png)")
         fd.setFileMode(fd.ExistingFile)
         prefs = self.load_preferences()
         if prefs is not None:
@@ -65,11 +76,12 @@ class MyWindow(QMainWindow, Ui_TestBench):
         prefs['last_dir'] = last_dir
         self.save_preferences(prefs)
         self.current_dir = last_dir
-        pmi = QGraphicsPixmapItem(QPixmap(f))
-        if self.scene is None:
-            self.scene = QGraphicsScene()
-        self.scene.addItem(pmi)
-        self.graphicsView.setScene(self.scene)
+        itab = ImageTab(self)
+        itab.message.connect(self.message)
+
+        self.tabsWidget.addTab(itab, os.path.basename(f))
+        self.tabsWidget.setCurrentIndex(self.tabsWidget.indexOf(itab))
+        itab.open(f)
 
     def save(self):
         pass
@@ -77,6 +89,6 @@ class MyWindow(QMainWindow, Ui_TestBench):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = MyWindow()
+    window = MainWindow()
     window.showMaximized()
     sys.exit(app.exec_())
