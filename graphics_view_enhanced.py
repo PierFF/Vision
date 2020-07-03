@@ -8,6 +8,7 @@ class GraphicsViewEnhanced(QGraphicsView):
         super(QGraphicsView, self).__init__(parent)
         self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setAttribute(Qt.WA_Hover)
 
     def reset_view(self):
         self.fitInView(self.sceneRect(), Qt.KeepAspectRatio)

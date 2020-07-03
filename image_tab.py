@@ -1,15 +1,25 @@
 from PyQt5.QtWidgets import QWidget, QApplication, QGraphicsScene,\
      QGraphicsPixmapItem
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QObject, pyqtSignal, QEvent
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import pyqtSignal
 from image_tab_UI import Ui_image_tab
 import sys
+
+
+class SetFocusOnHover(QObject):
+    def __init__(self):
+        super(QObject, self).__init__()
+
+    def eventFilter(self, object, event):
+        if event.type() == QEvent.HoverEnter:
+            object.setFocus()
+        return super().eventFilter(object, event)
 
 
 class ImageTab(QWidget, Ui_image_tab):
     scene = None
     image = None
+    evtfil = SetFocusOnHover()
 
     message = pyqtSignal(str, name='message')
 
@@ -17,6 +27,7 @@ class ImageTab(QWidget, Ui_image_tab):
         QWidget.__init__(self, parent)
         Ui_image_tab.__init__(self)
         self.setupUi(self)
+        self.graphicsView.installEventFilter(self.evtfil)
 
     def open(self, img_path):
         image = QPixmap(img_path)
