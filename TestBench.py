@@ -72,13 +72,8 @@ class MainWindow(QMainWindow, Ui_TestBench):
             prefs = {}
         if fd.exec():
             f = fd.selectedFiles()[0]
-        last_dir = os.path.dirname(f)
-        prefs['last_dir'] = last_dir
-        self.save_preferences(prefs)
-        self.current_dir = last_dir
         itab = ImageTab(self)
         itab.message.connect(self.message)
-
         self.tabsWidget.addTab(itab, os.path.basename(f))
         self.tabsWidget.setCurrentIndex(self.tabsWidget.indexOf(itab))
         itab.open(f)

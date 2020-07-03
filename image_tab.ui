@@ -15,7 +15,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="QFrame" name="frame_3">
+    <widget class="QFrame" name="frameL">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
        <horstretch>1</horstretch>
@@ -30,7 +30,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
-       <widget class="GraphicsViewEnhanced" name="graphicsView">
+       <widget class="GraphicsViewEnhanced" name="graphicsViewL">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>1</horstretch>
@@ -80,7 +80,7 @@
           </widget>
          </item>
          <item>
-          <spacer name="horizontalSpacer">
+          <spacer name="spacerL">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -113,7 +113,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QFrame" name="filetrsUp">
+    <widget class="QFrame" name="frameR">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
        <horstretch>1</horstretch>
@@ -128,29 +128,10 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_6">
       <item>
-       <widget class="QLabel" name="label">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>1</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="text">
-         <string>Drag filters here or use show results in the filters pipeline </string>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignCenter</set>
-        </property>
-        <property name="margin">
-         <number>0</number>
-        </property>
-       </widget>
+       <widget class="GraphicsViewEnhanced" name="graphicsViewR"/>
       </item>
       <item>
-       <widget class="QFrame" name="frame_5">
+       <widget class="QFrame" name="tollFrameR">
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
@@ -173,7 +154,7 @@
           </widget>
          </item>
          <item>
-          <spacer name="horizontalSpacer_2">
+          <spacer name="spacerR">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>

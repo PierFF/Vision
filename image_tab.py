@@ -19,7 +19,8 @@ class SetFocusOnHover(QObject):
 class ImageTab(QWidget, Ui_image_tab):
     scene = None
     image = None
-    evtfil = SetFocusOnHover()
+    evt_filter_L = SetFocusOnHover()
+    evt_filter_R = SetFocusOnHover()
 
     message = pyqtSignal(str, name='message')
 
@@ -27,17 +28,28 @@ class ImageTab(QWidget, Ui_image_tab):
         QWidget.__init__(self, parent)
         Ui_image_tab.__init__(self)
         self.setupUi(self)
-        self.graphicsView.installEventFilter(self.evtfil)
+        self.graphicsViewL.installEventFilter(self.evt_filter_L)
+        self.graphicsViewR.installEventFilter(self.evt_filter_R)
+        self.graphicsViewL.transformChanged.connect(
+            self.graphicsViewR.setTransform)
+        self.graphicsViewR.transformChanged.connect(
+            self.graphicsViewL.setTransform)
 
-    def open(self, img_path):
+    def open_in_graphicview(self, img_path, graphics_view):
         image = QPixmap(img_path)
         pixit = QGraphicsPixmapItem(image)
         if self.scene is None:
             self.scene = QGraphicsScene()
         self.scene.addItem(pixit)
-        self.graphicsView.setScene(self.scene)
-        self.graphicsView.fitInView(self.scene.sceneRect(), Qt.KeepAspectRatio)
-        self.graphicsView.setFocus(Qt.MouseFocusReason)
+        graphics_view.setScene(self.scene)
+        graphics_view.fitInView(
+            self.scene.sceneRect(), Qt.KeepAspectRatio)
+        graphics_view.setFocus(Qt.MouseFocusReason)
+
+    def open(self, img_path):
+        self.open_in_graphicview(img_path, self.graphicsViewL)
+        self.open_in_graphicview(img_path, self.graphicsViewR)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
