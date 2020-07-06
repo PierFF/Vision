@@ -12,9 +12,10 @@ class GraphicsViewEnhanced(QGraphicsView):
 
     def __init__(self, parent=None):
         super(QGraphicsView, self).__init__(parent)
-        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.setAttribute(Qt.WA_Hover)
+        self.setDragMode(self.ScrollHandDrag)
 
     def reset_view(self):
         self.fitInView(self.sceneRect(), Qt.KeepAspectRatio)
@@ -46,19 +47,3 @@ class GraphicsViewEnhanced(QGraphicsView):
 
     def mouseDoubleClickEvent(self, event):
         self.reset_view()
-
-    def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
-            self.mouse_click_pos = event.globalPos()
-
-    def mouseMoveEvent(self, event):
-        if self.mouse_click_pos is not None:
-            dx = event.globalPos().x() - self.mouse_click_pos.x()
-            dy = event.globalPos().y() - self.mouse_click_pos.y()
-            if dx != 0 or dy != 0:
-                self.centerOn()
-
-    def mouseReleaseEvent(self, event):
-        if event.button() == Qt.LeftButton:
-            self.mouse_click_pos = None
-
