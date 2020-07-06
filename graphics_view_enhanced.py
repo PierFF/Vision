@@ -16,6 +16,7 @@ class GraphicsViewEnhanced(QGraphicsView):
         self.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.setAttribute(Qt.WA_Hover)
         self.setDragMode(self.ScrollHandDrag)
+        self.setTransformationAnchor(self.AnchorUnderMouse)
 
     def reset_view(self):
         self.fitInView(self.sceneRect(), Qt.KeepAspectRatio)
@@ -47,3 +48,7 @@ class GraphicsViewEnhanced(QGraphicsView):
 
     def mouseDoubleClickEvent(self, event):
         self.reset_view()
+
+    def dragLeaveEvent(self, event):
+        print('hi')
+

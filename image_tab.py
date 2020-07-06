@@ -30,10 +30,25 @@ class ImageTab(QWidget, Ui_image_tab):
         self.setupUi(self)
         self.graphicsViewL.installEventFilter(self.evt_filter_L)
         self.graphicsViewR.installEventFilter(self.evt_filter_R)
+
         self.graphicsViewL.transformChanged.connect(
             self.graphicsViewR.setTransform)
         self.graphicsViewR.transformChanged.connect(
             self.graphicsViewL.setTransform)
+
+        self.graphicsViewL.verticalScrollBar().valueChanged.connect(
+            self.graphicsViewR.verticalScrollBar().setValue
+        )
+        self.graphicsViewL.horizontalScrollBar().valueChanged.connect(
+            self.graphicsViewR.horizontalScrollBar().setValue
+        )
+
+        self.graphicsViewR.verticalScrollBar().valueChanged.connect(
+            self.graphicsViewL.verticalScrollBar().setValue
+        )
+        self.graphicsViewR.horizontalScrollBar().valueChanged.connect(
+            self.graphicsViewL.horizontalScrollBar().setValue
+        )
 
     def open_in_graphicview(self, img_path, graphics_view):
         image = QPixmap(img_path)
