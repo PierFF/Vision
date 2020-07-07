@@ -42,9 +42,10 @@ class GraphicsViewEnhanced(QGraphicsView):
         if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
             self.reset_view()
         elif event.key() == Qt.Key_Plus:
-            self.zoom_out()
-        elif event.key() == Qt.Key_Minus:
             self.zoom_in()
+        elif event.key() == Qt.Key_Minus:
+            self.zoom_out()
+        super().keyPressEvent(event)
 
     def mouseDoubleClickEvent(self, event):
         self.reset_view()
