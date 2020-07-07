@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QTransform
 
 
-class GraphicsViewEnhanced(QGraphicsView):
+class ImageView(QGraphicsView):
 
     mouse_click_pos = None
     zoom_scale = 1
@@ -37,6 +37,7 @@ class GraphicsViewEnhanced(QGraphicsView):
             self.zoom_in()
         else:
             self.zoom_out()
+        super().wheelEvent(event)
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
@@ -49,7 +50,4 @@ class GraphicsViewEnhanced(QGraphicsView):
 
     def mouseDoubleClickEvent(self, event):
         self.reset_view()
-
-    def dragLeaveEvent(self, event):
-        print('hi')
-
+        super().mouseDoubleClickEvent(event)

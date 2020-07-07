@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'u:\Data\Devel\AnalyseImage\image_tab.ui'
+# Form implementation generated from reading ui file '/home/pierfazz/Documents/INSA/Devel/vision/Vision/widgets/UI/image_tab.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.0
 #
@@ -28,7 +28,7 @@ class Ui_image_tab(object):
         self.frameL.setObjectName("frameL")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.frameL)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
-        self.graphicsViewL = GraphicsViewEnhanced(self.frameL)
+        self.graphicsViewL = ImageView(self.frameL)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
@@ -76,7 +76,7 @@ class Ui_image_tab(object):
         self.frameR.setObjectName("frameR")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.frameR)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
-        self.graphicsViewR = GraphicsViewEnhanced(self.frameR)
+        self.graphicsViewR = ImageView(self.frameR)
         self.graphicsViewR.setObjectName("graphicsViewR")
         self.verticalLayout_6.addWidget(self.graphicsViewR)
         self.tollFrameR = QtWidgets.QFrame(self.frameR)
@@ -118,4 +118,4 @@ class Ui_image_tab(object):
         self.toolButton_9.setText(_translate("image_tab", "..."))
         self.toolButton_10.setText(_translate("image_tab", "..."))
         self.toolButton_7.setText(_translate("image_tab", "..."))
-from graphics_view_enhanced import GraphicsViewEnhanced
+from widgets.image_view import ImageView

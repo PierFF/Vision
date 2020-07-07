@@ -30,7 +30,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
-       <widget class="GraphicsViewEnhanced" name="graphicsViewL">
+       <widget class="ImageView" name="graphicsViewL">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>1</horstretch>
@@ -128,7 +128,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_6">
       <item>
-       <widget class="GraphicsViewEnhanced" name="graphicsViewR"/>
+       <widget class="ImageView" name="graphicsViewR"/>
       </item>
       <item>
        <widget class="QFrame" name="tollFrameR">
@@ -190,9 +190,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>GraphicsViewEnhanced</class>
+   <class>ImageView</class>
    <extends>QGraphicsView</extends>
-   <header>graphics_view_enhanced.h</header>
+   <header>widgets/image_view.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

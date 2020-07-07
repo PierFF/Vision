@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QFileDialog, QApplication
 from PyQt5.QtGui import QIcon
 from testbench_UI import Ui_TestBench
-from image_tab import ImageTab
+from widgets.image_tab import ImageTab
 
 import json
 import os
