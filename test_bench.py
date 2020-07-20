@@ -54,7 +54,7 @@ class MainWindow(QMainWindow, Ui_TestBench):
             f = open(self.file_settings_name, 'r')
             self.settings = json.load(f)
             f.close()
-    
+
     def save_preferences(self):
         f = open(self.file_settings_name, 'w')
         json.dump(self.settings, f)
@@ -89,3 +89,4 @@ if __name__ == "__main__":
     window = MainWindow()
     window.showMaximized()
     sys.exit(app.exec_())
+    window.bu

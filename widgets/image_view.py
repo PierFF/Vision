@@ -8,7 +8,8 @@ class ImageView(QGraphicsView):
     mouse_click_pos = None
     zoom_scale = 1
 
-    transformChanged = pyqtSignal(QTransform, name='transformChanged')
+    viewChanged = pyqtSignal(QTransform, name='viewChanged')
+    linked_image_view = None
 
     def __init__(self, parent=None):
         super(QGraphicsView, self).__init__(parent)
@@ -18,19 +19,50 @@ class ImageView(QGraphicsView):
         self.setDragMode(self.ScrollHandDrag)
         self.setTransformationAnchor(self.AnchorUnderMouse)
 
+    def link_to(self, other):
+        self.linked_image_view = other
+        other.linked_image_view = self
+        self.viewChanged.connect(
+            other.setView)
+        other.viewChanged.connect(
+            self.setView)
+
+        self.verticalScrollBar().valueChanged.connect(
+            other.verticalScrollBar().setValue
+        )
+        other.verticalScrollBar().valueChanged.connect(
+            self.verticalScrollBar().setValue
+        )
+        self.horizontalScrollBar().valueChanged.connect(
+            other.horizontalScrollBar().setValue
+        )
+        other.horizontalScrollBar().valueChanged.connect(
+            self.horizontalScrollBar().setValue
+        )
+
+    def setView(self, transform):
+        self.setTransform(transform)
+        if self. linked_image_view is not None:
+            self.horizontalScrollBar().setValue(
+                self.linked_image_view.horizontalScrollBar().value()
+                )
+            self.verticalScrollBar().setValue(
+                self.linked_image_view.verticalScrollBar().value()
+                )
+
     def reset_view(self):
         self.fitInView(self.sceneRect(), Qt.KeepAspectRatio)
-        self.transformChanged.emit(self.transform())
+        self.viewChanged.emit(self.transform())
 
     def zoom_in(self):
         self.scale(1.25, 1.25)
         self.zoom_scale *= 1.25
-        self.transformChanged.emit(self.transform())
+        self.viewChanged.emit(self.transform())
 
     def zoom_out(self):
         self.scale(0.8, 0.8)
         self.zoom_scale *= 0.8
-        self.transformChanged.emit(self.transform())
+        self.viewChanged.emit(self.transform())
 
     def wheelEvent(self, event):
         if event.angleDelta().y() > 0:
