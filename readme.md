@@ -6,3 +6,6 @@ Still under development.
 ## Contributors
 
 Simon Cayez, Pier Francesco Fazzini
+- a
+- b
+- c
