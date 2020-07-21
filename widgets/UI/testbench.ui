@@ -229,7 +229,7 @@
      <x>0</x>
      <y>0</y>
      <width>1133</width>
-     <height>24</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -258,21 +258,32 @@
    <addaction name="action_Quit"/>
   </widget>
   <action name="action_Quit">
+   <property name="icon">
+    <iconset theme=":/img/close.png"/>
+   </property>
    <property name="text">
     <string>&amp;Quit</string>
    </property>
   </action>
   <action name="action_Open">
+   <property name="icon">
+    <iconset theme=":/img/open.png"/>
+   </property>
    <property name="text">
     <string>&amp;Open</string>
    </property>
   </action>
   <action name="action_Save">
+   <property name="icon">
+    <iconset theme=":/img/save.png"/>
+   </property>
    <property name="text">
     <string>Save</string>
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

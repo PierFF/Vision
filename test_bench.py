@@ -29,15 +29,12 @@ class MainWindow(QMainWindow, Ui_TestBench):
 
         # Set close action
         self.action_Quit.triggered.connect(self.close)
-        self.action_Quit.setIcon(QIcon("./img/close.png"))
 
         # Set open action
         self.action_Open.triggered.connect(self.open)
-        self.action_Open.setIcon(QIcon("./img/open.png"))
 
         # Set save action
         self.action_Save.triggered.connect(self.open)
-        self.action_Save.setIcon(QIcon("./img/save.png"))
 
         # Specify cose action for tabsWidget
 
