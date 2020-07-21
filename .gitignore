@@ -1,5 +1,4 @@
 .vscode
 TestBench.prefs
 __pycache__
-*_UI.py
-*_rc.py
+./widgets/autogen

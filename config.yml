@@ -1,0 +1,11 @@
+ioPaths:
+  -
+    - "widgets/ui/*.ui"
+    - "autogen/%%FILENAME%%_ui.py"
+  -
+    - "widgets/resources/*.qrc"
+    - "autogen/%%FILENAME%%_rc.py"
+
+uic_options: --from-imports
+init_package: True
+force: False

@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget, QApplication, QGraphicsScene,\
      QGraphicsPixmapItem
 from PyQt5.QtCore import Qt, QObject, pyqtSignal, QEvent
 from PyQt5.QtGui import QPixmap
-from widgets.UI.image_tab_UI import Ui_image_tab
+from autogen.image_tab_ui import Ui_image_tab
 import sys
 
 

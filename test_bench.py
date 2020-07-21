@@ -1,14 +1,12 @@
-import sys
-from PyQt5.QtWidgets import QMainWindow, QFileDialog, QApplication
-from PyQt5.QtGui import QIcon
-from widgets.UI.testbench_UI import Ui_TestBench
+from PyQt5.QtWidgets import QMainWindow, QFileDialog
+from autogen.testbench_ui import Ui_TestBench
 from widgets.image_tab import ImageTab
 
 import json
 import os
 
 
-class MainWindow(QMainWindow, Ui_TestBench):
+class TestBench(QMainWindow, Ui_TestBench):
     version = 0.1
     file_settings_name = "TestBench.prefs"
     current_dir = ""
@@ -79,11 +77,3 @@ class MainWindow(QMainWindow, Ui_TestBench):
 
     def save(self):
         pass
-
-
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = MainWindow()
-    window.showMaximized()
-    sys.exit(app.exec_())
-    window.bu
