@@ -1,4 +1,4 @@
 .vscode
 TestBench.prefs
 __pycache__
-./widgets/autogen
+autogen

@@ -7,5 +7,5 @@ ioPaths:
     - "autogen/%%FILENAME%%_rc.py"
 
 uic_options: --from-imports
-init_package: True
+init_package: False
 force: False
