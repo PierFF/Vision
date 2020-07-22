@@ -48,8 +48,6 @@ class TestBench(QMainWindow, Ui_TestBench):
         if os.path.exists(self.file_settings_name):
             f = open(self.file_settings_name, 'r')
             self.settings = json.load(f)
-            print("settings ok")
-            print (self.settings)
             f.close()
 
     def save_preferences(self):
