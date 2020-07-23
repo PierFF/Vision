@@ -6,3 +6,9 @@ Still under development.
 ## Contributors
 
 Simon Cayez, Pier Francesco Fazzini
+
+## Documentation
+
+The developer documentation can be found here:
+
+[Developer documentation on read the docs](http://vision-insa-toulouse.rtfd.io)

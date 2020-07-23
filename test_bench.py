@@ -7,6 +7,9 @@ import os
 
 
 class TestBench(QMainWindow, Ui_TestBench):
+    """
+    The main class of the application 
+    """
     version = 0.1
     file_settings_name = "TestBench.prefs"
     current_dir = ""
