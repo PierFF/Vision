@@ -52,3 +52,6 @@ html_static_path = ['_static']
 
 # Avoid problems with Read the docs
 master_doc = 'index'
+
+# Options for autodoc
+autoclass_content = 'both'

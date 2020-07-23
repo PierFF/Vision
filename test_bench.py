@@ -8,15 +8,18 @@ import os
 
 class TestBench(QMainWindow, Ui_TestBench):
     """
-    The main class of the application 
+    The main class representing the main window of the application.
     """
-    version = 0.1
+    version = 0.1 #: Program version
     file_settings_name = "TestBench.prefs"
     current_dir = ""
     tabs = {}
     settings = {}
 
     def __init__(self):
+        """
+        The class constructor.
+        """
         QMainWindow.__init__(self)
         Ui_TestBench.__init__(self)
         self.setupUi(self)
@@ -42,23 +45,46 @@ class TestBench(QMainWindow, Ui_TestBench):
         self.tabsWidget.tabCloseRequested.connect(self.removeTab)
 
     def removeTab(self, tab_index):
+        """Removes a tab from the central QTabWidget.
+
+        Args:
+            tab_index (int): the index of the tab to be removed
+        """
         self.tabsWidget.removeTab(tab_index)
 
     def message(self, text):
+        """Writes a message to the lower QPlainTextEdit message area.
+
+        Args:
+            text (str): the text of the message to be written
+        """
         self.messagesWidget.appendPlainText(text)
 
     def load_settings(self):
+        """Loads the TestBench.prefs file and puts
+        its content in the settings attribute. 
+        The preference file must be located in the same
+        dir as the TestBench executable.
+        JSON format is used.
+        """
         if os.path.exists(self.file_settings_name):
             f = open(self.file_settings_name, 'r')
             self.settings = json.load(f)
             f.close()
 
     def save_preferences(self):
+        """Saves the content of the settings attribute
+        in the TestBench.prefs file, located in the same
+        dir as the TestBench executable.
+        """
         f = open(self.file_settings_name, 'w')
         json.dump(self.settings, f)
         f.close()
 
     def open(self):
+        """Opens an image file and shows it as a new tab
+        in the central QTabsWidget
+        """
         fd = QFileDialog(self)
         fd.setNameFilter("Tiff Images (*.tiff *.tif *.png)")
         fd.setFileMode(fd.ExistingFile)
