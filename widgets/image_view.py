@@ -4,12 +4,6 @@ from PyQt5.QtGui import QTransform
 
 
 class ImageView(QGraphicsView):
-    """Steroids !!!!!
-
-    Args:
-        QGraphicsView ([type]): [description]
-    """
-
     mouse_click_pos = None
     zoom_scale = 1
 
