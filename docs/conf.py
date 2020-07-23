@@ -56,5 +56,5 @@ master_doc = 'index'
 # Options for autodoc
 autoclass_content = 'both'
 autodoc_mock_imports = [  # To avoid problems in Read The Docs
-    'sip', 'PyQt5', 'PyQt5.QtGui', 'PyQt5.QtCore','PyQt5.QtWidgets
+    'sip', 'PyQt5', 'PyQt5.QtGui', 'PyQt5.QtCore','PyQt5.QtWidgets'
     ]
